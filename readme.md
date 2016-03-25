@@ -15,6 +15,11 @@ $ docker build -t convert .
 $ docker run -d -p 3000:3000 --name convert convert
 ```
 
+##### Turn on debugging
+```sh
+$ docker run -d -p 3000:3000 -e "APP_ENV=local" -e "APP_DEBUG=true" --name convert convert
+```
+
 ## Usage
 
 Post the file you want to convert and get the converted file in return.
