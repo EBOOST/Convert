@@ -16,9 +16,18 @@ RUN wget http://download.microsoft.com/download/E/6/7/E675FFFC-2A6D-4AB0-B3EB-27
     cp ppviewer/*.TTF ppviewer/*.TTC ~/.fonts/ && \
     rm -Rf PowerPointViewer
 
+# Install imagick extension
 RUN apt-get install libmagickwand-dev -y \
     && pecl install imagick \
     && docker-php-ext-enable imagick
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+
+# Install dependencies with Composer.
+# --prefer-source fixes issues with download limits on Github.
+# --no-interaction makes sure composer can run fully automated
+RUN composer install --prefer-source --no-interaction
 
 # Copy app source
 ADD [".", "/convert"]
