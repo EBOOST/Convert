@@ -11,13 +11,18 @@ class ConvertersController extends Controller
     {
         $file = $request->file('file');
         $pdf = stream_get_meta_data(tmpfile())['uri'];
+        $pageRange = '1-1';
 
         if (!$file) {
             return response('You have to send a file to convert.', 422);
         }
 
         if ($file->getMimeType() != 'application/pdf') {
-            $unoconv->transcode((string)$file, Unoconv::FORMAT_PDF, $pdf, '1-1');
+            if ($format = 'pdf') {
+                $pageRange = null;
+            }
+
+            $unoconv->transcode((string)$file, Unoconv::FORMAT_PDF, $pdf, $pageRange);
         } else {
             copy($file, $pdf);
         }
