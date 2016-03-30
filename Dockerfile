@@ -17,7 +17,7 @@ RUN wget http://download.microsoft.com/download/E/6/7/E675FFFC-2A6D-4AB0-B3EB-27
     rm -Rf PowerPointViewer
 
 # Install php extensions
-RUN apt-get install -y libicu-dev libmcrypt-dev && docker-php-ext-install intl mcrypt mbstring git
+RUN apt-get install -y libicu-dev libmcrypt-dev git && docker-php-ext-install intl mcrypt mbstring
 
 # Install imagick extension
 RUN apt-get install libmagickwand-dev -y \
