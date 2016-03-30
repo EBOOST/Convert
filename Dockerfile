@@ -17,12 +17,14 @@ RUN wget http://download.microsoft.com/download/E/6/7/E675FFFC-2A6D-4AB0-B3EB-27
     rm -Rf PowerPointViewer
 
 # Install php extensions
-RUN apt-get install -y libicu-dev libmcrypt-dev && docker-php-ext-install intl mcrypt mbstring
+RUN apt-get install -y libicu-dev libmcrypt-dev && docker-php-ext-install intl mcrypt mbstring git
 
 # Install imagick extension
 RUN apt-get install libmagickwand-dev -y \
     && pecl install imagick \
     && docker-php-ext-enable imagick
+
+RUN docker-php-ext-install zip
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
