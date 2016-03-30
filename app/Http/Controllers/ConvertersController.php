@@ -18,7 +18,7 @@ class ConvertersController extends Controller
         }
 
         if ($file->getMimeType() != 'application/pdf') {
-            if ($format = 'pdf') {
+            if ($format == 'pdf') {
                 $pageRange = null;
             }
 
