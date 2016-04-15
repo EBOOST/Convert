@@ -6,7 +6,7 @@ MAINTAINER Bert van Hoekelen
 RUN apt-get update && apt-get install -y unoconv imagemagick && apt-get clean
 
 # Install fonts
-RUN echo "deb http://httpredir.debian.org/debian jessie non-free contrib" >> /etc/apt/sources.list
+RUN echo "deb http://mirror.transip.net/debian/debian jessie non-free contrib" >> /etc/apt/sources.list
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y unar fonts-liberation msttcorefonts && apt-get clean
 RUN wget http://download.microsoft.com/download/E/6/7/E675FFFC-2A6D-4AB0-B3EB-27C9F8C8F696/PowerPointViewer.exe && \
     unar PowerPointViewer.exe && \
@@ -34,6 +34,8 @@ ADD [".", "/convert"]
 
 # Change working directory
 WORKDIR "/convert"
+
+COPY max_upload.ini /usr/local/etc/php/conf.d/max_upload.ini
 
 # Install dependencies with Composer.
 # --prefer-source fixes issues with download limits on Github.
