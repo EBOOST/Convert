@@ -28,7 +28,7 @@ class ConvertersController extends Controller
         }
 
         if ($format == 'pdf') {
-            return response(file_get_contents($pdf), 200 , [
+            return response(file_get_contents($pdf), 200, [
                 'Content-Type' => 'application/pdf'
             ]);
         }
@@ -49,5 +49,4 @@ class ConvertersController extends Controller
             'Content-Type' => $imagine->getImageMimeType()
         ]);
     }
-
 }

@@ -27,10 +27,10 @@ The url for the convert webservice is http://dockerip/convert/{new-file-format}
 
 ##### Creating a pdf from docx
 ```sh
-$ curl --form file=@somedocument.docx http://192.168.99.100/convert/pdf > newfile.pdf
+$ curl --form file=@somedocument.docx http://192.168.99.100:3000/convert/pdf > newfile.pdf
 ```
 
 ##### Creating a jpg from docx
 ```sh
-$ curl --form file=@somedocument.docx http://192.168.99.100/convert/jpg > newfile.jpg
+$ curl --form file=@somedocument.docx http://192.168.99.100:3000/convert/jpg > newfile.jpg
 ```
